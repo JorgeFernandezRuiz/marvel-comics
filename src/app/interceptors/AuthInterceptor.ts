@@ -28,7 +28,8 @@ export class AuthInterceptor implements HttpInterceptor {
     params = params.append('apikey', this.public_key);
     params = params.append('ts', '' + time);
 
-    const newReq = req.clone({params : params, headers : headers});
+    const newReq = req.clone({params, headers});
+    console.log('en el interceptor ', newReq.urlWithParams);
     return next.handle(newReq);
   }
 }

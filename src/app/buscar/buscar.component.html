@@ -1,0 +1,40 @@
+<p>busqueda</p>
+<div class="container">
+
+    <mat-form-field class="search-full-width" appearance="outline">
+      <mat-label>Superheroe</mat-label>
+      <input id="searchField" matInput type="text" [formControl]="searchField" name="searchField" placeholder="Ant-man">
+      <span matSuffix>
+        <mat-icon>search</mat-icon>
+      </span>
+<!--      <mat-error *ngIf="f.search.errors && f.search.errors.required">Comience a escribir para realizar una busqueda</mat-error>-->
+    </mat-form-field>
+</div>
+
+<div class="container-search-result">
+
+      <mat-card class="character-card"  *ngFor="let character of searchResults; let idx = index">
+        <mat-card-header>
+          <mat-card-title>{{character.name}}</mat-card-title>
+          <mat-card-subtitle>{{character.d}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{character.thumbnail.path+'/portrait_uncanny.'+character.thumbnail.extension}}">
+        <mat-card-content>
+          <p>Descripcion: {{character.description}}</p>
+          <p>Fecha de modificacion: {{character.modified | date: 'dd/MM/yyyy'}}</p>
+        </mat-card-content>
+        <mat-card-actions >
+          <ul>
+            <li *ngFor="let url of character.urls">
+              <a mat-raised-button color="accent" (click)="goToUrl(url.url)">{{url.type}}</a>
+            </li>
+          </ul>
+        </mat-card-actions>
+      </mat-card>
+</div>
+<mat-paginator *ngIf="searchResults.length > 0"
+               [length]="length"
+               [pageSize]="pageSize"
+               (page)="onPaginatorChange($event)"></mat-paginator>
+
+

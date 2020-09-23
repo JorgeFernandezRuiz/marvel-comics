@@ -1,0 +1,41 @@
+.container{
+  margin: 20px;
+}
+
+.container-search-result{
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /*grid-template-rows: 1fr 1fr 1fr;*/
+  gap: 5px 5px;
+}
+
+
+
+
+.character-card {
+  min-width: 400px;
+  max-width: 400px;
+  align-self: center;
+  justify-self: center;
+  vertical-align: top;
+}
+
+.search-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.search-full-width {
+  width: 100%;
+  color: white;
+}
+ul {
+  display: flex;
+}
+ul li{
+  list-style: none;
+  display: inline;
+  margin-right: 10px;
+}
