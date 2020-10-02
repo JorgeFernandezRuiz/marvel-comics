@@ -3,15 +3,22 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-
+  production: false,
+  keycloak: {
+    issuer: 'http://localhost:8080/auth/realms/App-Realm',
+    clientId: 'marvel-comics-app',
+    redirectUri: 'http://localhost:4200/',
+    responseType: 'code',
+    // set the scope for the permissions the client should request
+    // The first three are defined by OIDC.
+    scope: 'openid profile email roles',
+    // Remove the requirement of using Https to simplify the demo
+    // THIS SHOULD NOT BE USED IN PRODUCTION
+    // USE A CERTIFICATE FOR YOUR IDP
+    // IN PRODUCTION
+    requireHttps: false,
+    // at_hash is not present in JWT token
+    showDebugInformation: true,
+    disableAtHashCheck: true
+  }
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

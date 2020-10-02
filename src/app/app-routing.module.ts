@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PruebaComponent} from './prueba/prueba.component';
 import {BuscarComponent} from './buscar/buscar.component';
+import {AuthGuardService} from './services/auth-guard.service';
+import {NoContentComponent} from './no-content/no-content.component';
 
 const routes: Routes = [
+  {path: 'buscar', component: BuscarComponent,  canActivate: [AuthGuardService]},
+  { path: '', component: NoContentComponent },
+  { path: '**',   component: NoContentComponent}
 
-  {path: 'prueba', component: PruebaComponent},
-  {path: 'buscar', component: BuscarComponent}
 ];
 
 @NgModule({

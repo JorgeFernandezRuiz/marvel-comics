@@ -7,17 +7,17 @@ import { filter } from 'rxjs/operators';
 export class AuthConfigService {
   private _decodedAccessToken: any;
   private _decodedIDToken: any;
-  get decodedAccessToken() { return this._decodedAccessToken; }
-  get decodedIDToken() { return this._decodedIDToken; }
+  get decodedAccessToken(): any { return this._decodedAccessToken; }
+  get decodedIDToken(): any { return this._decodedIDToken; }
   constructor(    private readonly oauthService: OAuthService,
                   private readonly authConfig: AuthConfig) { }
 
   async initAuth(): Promise<any> {
-    console.log("iniciando autorizacion");
+    console.log('iniciando autorizacion');
     return new Promise((resolveFn, rejectFn) => {
       // setup oauthService
       this.oauthService.configure(this.authConfig);
-      this.oauthService.setStorage(localStorage);
+      this.oauthService.setStorage(sessionStorage);
       this.oauthService.tokenValidationHandler = new NullValidationHandler();
 
       // subscribe to token events
@@ -42,7 +42,7 @@ export class AuthConfigService {
     });
   }
 
-  private handleNewToken() {
+  private handleNewToken(): void {
     this._decodedAccessToken = this.oauthService.getAccessToken();
     this._decodedIDToken = this.oauthService.getIdToken();
   }
